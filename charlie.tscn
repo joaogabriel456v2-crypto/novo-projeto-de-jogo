@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dr211ut8d4u2v"]
+
+[ext_resource type="Script" uid="uid://ch0rdo6dj2iwp" path="res://charliewalk.gd" id="1_1wpk1"]
+[ext_resource type="Texture2D" uid="uid://c75jrp57x4wfs" path="res://icon.svg" id="2_wqy3n"]
+[ext_resource type="Texture2D" uid="uid://bri428nmj3cic" path="res://Gemini_Generated_Image_r1evp0r1evp0r1ev.png" id="3_ng0i4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gcw36"]
+size = Vector2(1216, 127)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1f8dl"]
+
+[node name="Node2D" type="Node2D" unique_id=1769402509]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=84181970]
+script = ExtResource("1_1wpk1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=769414773]
+position = Vector2(608, 550)
+shape = SubResource("RectangleShape2D_gcw36")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=1157192628]
+position = Vector2(537, 193)
+texture = ExtResource("2_wqy3n")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1241622085]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=862634260]
+position = Vector2(610, 543)
+scale = Vector2(0.4300426, 0.07812501)
+texture = ExtResource("3_ng0i4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1616584034]
+shape = SubResource("RectangleShape2D_1f8dl")
