@@ -4,7 +4,7 @@
 
 (vamos escolher o nome do jogo depois) é um jogo educativo desenvolvido na Godot Engine utilizando GDScript, com o objetivo de ensinar conceitos básicos sobre a evolução dos computadores e seus principais componentes eletrônicos ao longo das gerações.
 
-O jogador acompanha **Charlie**, um entusiasta da computação e explorador nas horas vagas. Durante uma de suas explorações por locais abandonados, ele encontra uma antiga fábrica desativada repleta de computadores de diferentes épocas. Curioso para descobrir a história daquele lugar, **Charlie** decide investigar as máquinas esquecidas pelo tempo.
+O jogador controla **Charlie**, um entusiasta da computação e explorador nas horas vagas. Durante uma de suas explorações por locais abandonados, ele encontra uma antiga fábrica desativada repleta de computadores de diferentes épocas. Curioso para descobrir a história daquele lugar, **Charlie** decide investigar as máquinas esquecidas pelo tempo.
 
 Ao encontrar diversos computadores danificados, **Charlie** percebe que pode restaurá-los utilizando materiais encontrados no ambiente. Porém, para consertar cada máquina corretamente, ele precisa identificar qual tecnologia era utilizada em sua época:
 
