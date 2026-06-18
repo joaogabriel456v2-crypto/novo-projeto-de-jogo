@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ldh51c4rxewb"]
+
+[ext_resource type="Script" uid="uid://babewjd33b72k" path="res://item_coletavel.gd" id="1_jd6kg"]
+[ext_resource type="Texture2D" uid="uid://cv0orslxlkk3f" path="res://sprites/componente1_parte_a.png" id="2_357nq"]
+
+[node name="ItemColetavel" type="Area2D" unique_id=449047197]
+script = ExtResource("1_jd6kg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=25173110]
+position = Vector2(32, -32)
+scale = Vector2(0.0625, 0.0625)
+texture = ExtResource("2_357nq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2117437978]
