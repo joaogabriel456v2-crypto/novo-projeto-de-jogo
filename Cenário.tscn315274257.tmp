@@ -17,12 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://c4s1t1g2e0con" path="res://Animação Charlie/CharlieEsquerda.png" id="15_lkx2x"]
 [ext_resource type="Texture2D" uid="uid://cpvo6e2nutmwo" path="res://Animação Charlie/CharlieDireita.png" id="16_0oehc"]
 [ext_resource type="PackedScene" uid="uid://ldh51c4rxewb" path="res://item_coletavel.tscn" id="17_qry5r"]
-[ext_resource type="Script" uid="uid://cmge1sdfu6p7e" path="res://componente1_parte_b.gd" id="18_4o503"]
-[ext_resource type="Script" uid="uid://dpo2ov8m20rlq" path="res://componente2_parte_a.gd" id="19_kb3w4"]
-[ext_resource type="Script" uid="uid://su15amfl1mod" path="res://componente2_parte_b.gd" id="20_6bcuj"]
-[ext_resource type="Script" uid="uid://bba1vq72hgquw" path="res://componente3_parte_a.gd" id="21_dfgvn"]
-[ext_resource type="Script" uid="uid://d3ygbpaaicfqw" path="res://componente3_parte_b.gd" id="22_pjjq3"]
-[ext_resource type="PackedScene" uid="uid://dtnu00yowf572" path="res://inventario_ui.tscn" id="23_kb3w4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4o503"]
 texture = ExtResource("1_s72x0")
@@ -3620,8 +3614,8 @@ layer_2/name = "parade"
 layer_2/z_index = 2
 layer_2/tile_data = PackedInt32Array(131067, 131080, 2, 65531, 131080, 1, -5, 131080, 17, -65541, 131080, 16, -131077, 131080, 15, 65530, 65544, 1, 131066, 65544, 2, 196602, 65544, 3, 262138, 65544, 4, 327674, 65544, 5, 196603, 131080, 3, 262139, 131080, 4, 327675, 131080, 5, 65532, 196616, 1, 131068, 196616, 2, 196604, 196616, 3, 262140, 196616, 4, 327676, 196616, 5)
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1571523571 groups=["player"]]
-position = Vector2(-8, -8)
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1571523571]
+position = Vector2(0, -10.25)
 script = ExtResource("12_nokn1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=767068719]
@@ -3640,26 +3634,4 @@ limit_smoothed = true
 position_smoothing_enabled = true
 
 [node name="ItemColetavel" parent="." unique_id=449047197 instance=ExtResource("17_qry5r")]
-position = Vector2(32, 32)
-
-[node name="ItemColetavel2" parent="." unique_id=121814040 instance=ExtResource("17_qry5r")]
-position = Vector2(32, 64)
-script = ExtResource("18_4o503")
-
-[node name="ItemColetavel3" parent="." unique_id=695172733 instance=ExtResource("17_qry5r")]
-position = Vector2(64, 64)
-script = ExtResource("19_kb3w4")
-
-[node name="ItemColetavel4" parent="." unique_id=428264106 instance=ExtResource("17_qry5r")]
-position = Vector2(64, 32)
-script = ExtResource("20_6bcuj")
-
-[node name="ItemColetavel5" parent="." unique_id=1316283257 instance=ExtResource("17_qry5r")]
-position = Vector2(64, 0)
-script = ExtResource("21_dfgvn")
-
-[node name="ItemColetavel6" parent="." unique_id=1722997870 instance=ExtResource("17_qry5r")]
-position = Vector2(64, -32)
-script = ExtResource("22_pjjq3")
-
-[node name="CanvasLayer" parent="." unique_id=1027523330 instance=ExtResource("23_kb3w4")]
+position = Vector2(80, 0)

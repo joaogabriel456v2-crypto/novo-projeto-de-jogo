@@ -5,6 +5,8 @@ const MOVE_SPEED = 300.0      # velocidade de deslizamento entre os tiles
 var moving := false           # true enquanto estiver se movendo pro próximo tile
 var target_pos := Vector2.ZERO  # posição destino do movimento atual
 
+
+
 func _ready() -> void:
 	target_pos = global_position  # começa parado onde está
 	z_index = 1

@@ -1,16 +1,20 @@
 [gd_scene format=3 uid="uid://ldh51c4rxewb"]
 
-[ext_resource type="Script" uid="uid://babewjd33b72k" path="res://Componente1 parte a.gd" id="1_jd6kg"]
+[ext_resource type="Script" uid="uid://babewjd33b72k" path="res://item_coletavel.gd" id="1_jd6kg"]
+[ext_resource type="Texture2D" uid="uid://cbr2yu3sion8r" path="res://sprites/componente1_parte_b.png" id="2_jd6kg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kc202"]
-size = Vector2(512, 512)
+size = Vector2(256, 256)
 
 [node name="ItemColetavel" type="Area2D" unique_id=449047197]
 script = ExtResource("1_jd6kg")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=25173110]
+position = Vector2(8, -8)
 scale = Vector2(0.015625, 0.015625)
+texture = ExtResource("2_jd6kg")
 
 [node name="ColisionShape2D" type="CollisionShape2D" parent="." unique_id=1200792836]
+position = Vector2(8, -8)
 scale = Vector2(0.0625, 0.0625)
 shape = SubResource("RectangleShape2D_kc202")

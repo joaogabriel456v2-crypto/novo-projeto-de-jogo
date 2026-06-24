@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://dnhejfoo6805k"]
+
+[ext_resource type="Texture2D" uid="uid://dl6kyf80gal2g" path="res://sprites/componente1_parte_a.png" id="1_qxvrj"]
+[ext_resource type="Texture2D" uid="uid://cbr2yu3sion8r" path="res://sprites/componente1_parte_b.png" id="2_hahpk"]
+[ext_resource type="Texture2D" uid="uid://b3yyhy31ramw1" path="res://sprites/componente2_parte_a.png" id="3_vj5i7"]
+[ext_resource type="Texture2D" uid="uid://kmegmq68xnrn" path="res://sprites/componente2_parte_b.png" id="4_4jc4u"]
+[ext_resource type="Texture2D" uid="uid://v0rxgcsln77s" path="res://sprites/componente3_parte_a.png" id="5_4430m"]
+[ext_resource type="Texture2D" uid="uid://ply3mik58otp" path="res://sprites/componente3_parte_b.png" id="6_13boq"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1027523330]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1661026362]
+custom_minimum_size = Vector2(10, 500)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Slot_C1A" type="TextureRect" parent="HBoxContainer" unique_id=677304232]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+texture = ExtResource("1_qxvrj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slot_C1B" type="TextureRect" parent="HBoxContainer" unique_id=1129390888]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+texture = ExtResource("2_hahpk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slot_C2A" type="TextureRect" parent="HBoxContainer" unique_id=842986223]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+texture = ExtResource("3_vj5i7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slot_C2B" type="TextureRect" parent="HBoxContainer" unique_id=188784921]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+texture = ExtResource("4_4jc4u")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slot_C3A" type="TextureRect" parent="HBoxContainer" unique_id=2132188573]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("5_4430m")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slot_C3B" type="TextureRect" parent="HBoxContainer" unique_id=1014925626]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+texture = ExtResource("6_13boq")
+expand_mode = 1
+stretch_mode = 5
