@@ -23,6 +23,8 @@
 [ext_resource type="Script" uid="uid://bba1vq72hgquw" path="res://componente3_parte_a.gd" id="21_dfgvn"]
 [ext_resource type="Script" uid="uid://d3ygbpaaicfqw" path="res://componente3_parte_b.gd" id="22_pjjq3"]
 [ext_resource type="PackedScene" uid="uid://dtnu00yowf572" path="res://inventario_ui.tscn" id="23_kb3w4"]
+[ext_resource type="PackedScene" uid="uid://bwx6fhfi7hb32" path="res://mesa_craft.tscn" id="24_6bcuj"]
+[ext_resource type="PackedScene" uid="uid://bqysyptdbrbmx" path="res://craft_ui.tscn" id="25_dfgvn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4o503"]
 texture = ExtResource("1_s72x0")
@@ -3621,11 +3623,11 @@ layer_2/z_index = 2
 layer_2/tile_data = PackedInt32Array(131067, 131080, 2, 65531, 131080, 1, -5, 131080, 17, -65541, 131080, 16, -131077, 131080, 15, 65530, 65544, 1, 131066, 65544, 2, 196602, 65544, 3, 262138, 65544, 4, 327674, 65544, 5, 196603, 131080, 3, 262139, 131080, 4, 327675, 131080, 5, 65532, 196616, 1, 131068, 196616, 2, 196604, 196616, 3, 262140, 196616, 4, 327676, 196616, 5)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1571523571 groups=["player"]]
-position = Vector2(-8, -8)
+position = Vector2(-40, -32)
 script = ExtResource("12_nokn1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=767068719]
-position = Vector2(-0.25, 14.5)
+position = Vector2(-0.25, 13)
 shape = SubResource("RectangleShape2D_nokn1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=409229244]
@@ -3662,4 +3664,10 @@ script = ExtResource("21_dfgvn")
 position = Vector2(64, -32)
 script = ExtResource("22_pjjq3")
 
-[node name="CanvasLayer" parent="." unique_id=1027523330 instance=ExtResource("23_kb3w4")]
+[node name="inventário_ui" parent="." unique_id=1027523330 instance=ExtResource("23_kb3w4")]
+
+[node name="CanvasLayerCraft" type="CanvasLayer" parent="." unique_id=1423347337]
+
+[node name="CraftUI" parent="CanvasLayerCraft" unique_id=749918088 instance=ExtResource("25_dfgvn")]
+
+[node name="Mesa_Craft" parent="." unique_id=1600757573 instance=ExtResource("24_6bcuj")]

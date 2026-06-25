@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bwx6fhfi7hb32"]
+
+[ext_resource type="Texture2D" uid="uid://dx3irrhl18yyb" path="res://Mesa de Craft.png" id="1_ef4mh"]
+[ext_resource type="Script" uid="uid://dorelu0pgwlag" path="res://mesa_craft.gd" id="1_i0toq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8e2n3"]
+size = Vector2(30, 37)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0toq"]
+size = Vector2(32, 32)
+
+[node name="Mesa_Craft" type="Area2D" unique_id=1600757573]
+script = ExtResource("1_i0toq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2113659369]
+position = Vector2(-4.7683716e-07, -4.7683716e-07)
+scale = Vector2(0.046874993, 0.046874993)
+texture = ExtResource("1_ef4mh")
+
+[node name="CollisionShapeD2" type="CollisionShape2D" parent="." unique_id=1751274964]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_8e2n3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=753691012]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=808400294]
+shape = SubResource("RectangleShape2D_i0toq")
