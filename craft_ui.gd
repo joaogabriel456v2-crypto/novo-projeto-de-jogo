@@ -9,9 +9,9 @@ var aberto := false
 @onready var detalhes_rele = $Painel/Control/DetalhesRele
 @onready var detalhes_valvula = $Painel/Control/DetalhesValvula
 @onready var detalhes_transistor = $Painel/Control/DetalhesTransistor
-@onready var criar_rele = $Painel/Control/DetalhesRele/Button
-@onready var criar_valvula = $Painel/Control/DetalhesValvula/Button
-@onready var criar_transistor = $Painel/Control/DetalhesTransistor/Button
+@onready var criar_rele: TextureButton = $Painel/Control/DetalhesRele/Button
+@onready var criar_valvula: TextureButton = $Painel/Control/DetalhesValvula/Button
+@onready var criar_transistor: TextureButton = $Painel/Control/DetalhesTransistor/Button
 @onready var botao_fechar = $Painel/Control/BotaoFechar
 
 func _ready() -> void:
@@ -58,20 +58,17 @@ func _atualizar_botoes_criar() -> void:
 	_atualizar_botao(criar_valvula, "componente_2")
 	_atualizar_botao(criar_transistor, "componente_3")
 
-func _atualizar_botao(botao: Button, comp_id: String) -> void:
+func _atualizar_botao(botao: TextureButton, comp_id: String) -> void:
 	var craftado = Inventory.componentes[comp_id]["craftado"]
 	var completo = Inventory.componente_esta_completo(comp_id)
 
 	if craftado:
-		botao.text = "Criado"
 		botao.disabled = true
 		botao.modulate = Color(0.5, 0.5, 0.5)
 	elif completo:
-		botao.text = "Criar"
 		botao.disabled = false
-		botao.modulate = Color(0.3, 1.0, 0.3)
+		botao.modulate = Color(1.0, 1.0, 1.0)  # cor normal
 	else:
-		botao.text = "Criar"
 		botao.disabled = true
 		botao.modulate = Color(0.5, 0.5, 0.5)
 

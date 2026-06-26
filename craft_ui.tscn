@@ -2,17 +2,20 @@
 
 [ext_resource type="Script" uid="uid://dn0qg1iao25tb" path="res://craft_ui.gd" id="1_7eew0"]
 [ext_resource type="Texture2D" uid="uid://b4rxvmsa1dncl" path="res://sprites/componente1_montado.png" id="2_twhwv"]
+[ext_resource type="Texture2D" uid="uid://bsoofguuc312j" path="res://interface.png" id="2_ymtor"]
 [ext_resource type="Texture2D" uid="uid://dor4hc48ucpwb" path="res://sprites/componente2_montado.png" id="3_ymtor"]
 [ext_resource type="Texture2D" uid="uid://u4xyqrrmyn2r" path="res://sprites/componente3_montado.png" id="4_acadn"]
 [ext_resource type="Texture2D" uid="uid://dl6kyf80gal2g" path="res://sprites/componente1_parte_a.png" id="5_ubnyr"]
 [ext_resource type="Texture2D" uid="uid://cbr2yu3sion8r" path="res://sprites/componente1_parte_b.png" id="6_cbn7w"]
 [ext_resource type="Texture2D" uid="uid://b3yyhy31ramw1" path="res://sprites/componente2_parte_a.png" id="7_goe87"]
+[ext_resource type="Texture2D" uid="uid://ci6o2nsv1igym" path="res://botão_criar.png" id="8_cbn7w"]
 [ext_resource type="Texture2D" uid="uid://kmegmq68xnrn" path="res://sprites/componente2_parte_b.png" id="8_v1igj"]
+[ext_resource type="Texture2D" uid="uid://m3x6hrrhf6xa" path="res://botão_criar_pressionado.png" id="9_goe87"]
 [ext_resource type="Texture2D" uid="uid://v0rxgcsln77s" path="res://sprites/componente3_parte_a.png" id="9_q6duy"]
 [ext_resource type="Texture2D" uid="uid://ply3mik58otp" path="res://sprites/componente3_parte_b.png" id="10_8766w"]
+[ext_resource type="Texture2D" uid="uid://d2negyounbvhi" path="res://botão_criar-cinza.png" id="10_v1igj"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_twhwv"]
-bg_color = Color(0.935654, 0, 0.14088511, 0.7019608)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q6duy"]
 
 [node name="CraftUI" type="CanvasLayer" unique_id=749918088]
 script = ExtResource("1_7eew0")
@@ -30,9 +33,20 @@ offset_right = 250.0
 offset_bottom = 125.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_q6duy")
 
 [node name="Control" type="Control" parent="Painel" unique_id=680629722]
 layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Painel/Control" unique_id=1884466742]
+layout_direction = 4
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 799.0
+offset_bottom = 397.0
+texture = ExtResource("2_ymtor")
+stretch_mode = 6
 
 [node name="VBoxContainer" type="Control" parent="Painel/Control" unique_id=208679102]
 anchors_preset = 0
@@ -41,10 +55,10 @@ offset_bottom = 400.0
 [node name="BotaoRele" type="TextureButton" parent="Painel/Control/VBoxContainer" unique_id=950917561]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 0
-offset_left = 13.0
-offset_top = 28.0
-offset_right = 125.0
-offset_bottom = 132.0
+offset_left = 7.0
+offset_top = 17.0
+offset_right = 149.15385
+offset_bottom = 149.0
 texture_normal = ExtResource("2_twhwv")
 ignore_texture_size = true
 stretch_mode = 5
@@ -52,10 +66,10 @@ stretch_mode = 5
 [node name="BotaoValvula" type="TextureButton" parent="Painel/Control/VBoxContainer" unique_id=148388571]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 0
-offset_left = 21.0
-offset_top = 156.0
-offset_right = 117.0
-offset_bottom = 252.0
+offset_left = 19.0
+offset_top = 132.0
+offset_right = 142.0
+offset_bottom = 255.0
 texture_normal = ExtResource("3_ymtor")
 ignore_texture_size = true
 stretch_mode = 5
@@ -63,10 +77,10 @@ stretch_mode = 5
 [node name="BotaoTransistor" type="TextureButton" parent="Painel/Control/VBoxContainer" unique_id=1838427435]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 0
-offset_left = 21.0
-offset_top = 260.0
-offset_right = 117.0
-offset_bottom = 380.0
+offset_left = 22.0
+offset_top = 235.0
+offset_right = 140.0
+offset_bottom = 382.5
 keep_pressed_outside = true
 texture_normal = ExtResource("4_acadn")
 ignore_texture_size = true
@@ -78,6 +92,15 @@ offset_left = 4.0
 offset_right = 4.0
 offset_bottom = 400.0
 
+[node name="Label" type="Label" parent="Painel/Control/DetalhesRele" unique_id=396090721]
+layout_mode = 0
+offset_left = 413.0
+offset_top = 41.0
+offset_right = 493.0
+offset_bottom = 90.0
+theme_override_font_sizes/font_size = 35
+text = "RELÉ"
+
 [node name="Parte A" type="Control" parent="Painel/Control/DetalhesRele" unique_id=585101255]
 anchors_preset = 0
 offset_right = 8.0
@@ -85,10 +108,10 @@ offset_right = 8.0
 [node name="TextureRect" type="TextureRect" parent="Painel/Control/DetalhesRele/Parte A" unique_id=741060954]
 custom_minimum_size = Vector2(55, 55)
 layout_mode = 0
-offset_left = 196.0
-offset_top = 92.0
-offset_right = 332.0
-offset_bottom = 228.0
+offset_left = 225.0
+offset_top = 72.0
+offset_right = 361.0
+offset_bottom = 208.0
 texture = ExtResource("5_ubnyr")
 expand_mode = 2
 stretch_mode = 5
@@ -110,10 +133,10 @@ offset_bottom = 4.0
 [node name="TextureRect" type="TextureRect" parent="Painel/Control/DetalhesRele/Parte B" unique_id=351405066]
 custom_minimum_size = Vector2(90, 64)
 layout_mode = 0
-offset_left = 476.0
-offset_top = 72.0
-offset_right = 723.5
-offset_bottom = 248.0
+offset_left = 491.0
+offset_top = 50.0
+offset_right = 738.5
+offset_bottom = 226.0
 texture = ExtResource("6_cbn7w")
 expand_mode = 1
 stretch_mode = 5
@@ -121,23 +144,36 @@ stretch_mode = 5
 [node name="Label" type="Label" parent="Painel/Control/DetalhesRele/Parte B/TextureRect" unique_id=569892428]
 layout_mode = 0
 offset_left = 96.0
-offset_top = 8.0
+offset_top = 10.0
 offset_right = 153.0
-offset_bottom = 31.0
+offset_bottom = 33.0
 text = "Parte B"
 
-[node name="Button" type="Button" parent="Painel/Control/DetalhesRele" unique_id=1416163732]
+[node name="Button" type="TextureButton" parent="Painel/Control/DetalhesRele" unique_id=1368846673]
 layout_mode = 0
-offset_left = 332.0
-offset_top = 260.0
-offset_right = 540.0
-offset_bottom = 308.0
+offset_left = 362.0
+offset_top = 311.0
+offset_right = 570.0
+offset_bottom = 359.0
+texture_normal = ExtResource("8_cbn7w")
+texture_pressed = ExtResource("9_goe87")
+texture_disabled = ExtResource("10_v1igj")
+stretch_mode = 6
 
 [node name="DetalhesValvula" type="Control" parent="Painel/Control" unique_id=1129736893]
 anchors_preset = 0
 offset_left = 8.0
 offset_right = 16.0
 offset_bottom = 400.0
+
+[node name="Label" type="Label" parent="Painel/Control/DetalhesValvula" unique_id=34041291]
+layout_mode = 0
+offset_left = 377.0
+offset_top = 41.0
+offset_right = 531.0
+offset_bottom = 90.0
+theme_override_font_sizes/font_size = 35
+text = "VÁLVULA"
 
 [node name="Parte A" type="Control" parent="Painel/Control/DetalhesValvula" unique_id=1513516428]
 anchors_preset = 0
@@ -146,10 +182,10 @@ offset_right = 8.0
 [node name="TextureRect" type="TextureRect" parent="Painel/Control/DetalhesValvula/Parte A" unique_id=723071824]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 0
-offset_left = 168.0
-offset_top = 71.0
-offset_right = 353.0
-offset_bottom = 245.0
+offset_left = 197.0
+offset_top = 51.0
+offset_right = 382.0
+offset_bottom = 225.0
 texture = ExtResource("7_goe87")
 expand_mode = 2
 stretch_mode = 5
@@ -170,32 +206,45 @@ offset_bottom = 4.0
 
 [node name="TextureRect" type="TextureRect" parent="Painel/Control/DetalhesValvula/Parte B" unique_id=1995232008]
 layout_mode = 0
-offset_left = 534.0
-offset_top = 97.0
-offset_right = 661.0
-offset_bottom = 224.0
+offset_left = 549.0
+offset_top = 76.0
+offset_right = 676.0
+offset_bottom = 203.0
 texture = ExtResource("8_v1igj")
 
 [node name="Label" type="Label" parent="Painel/Control/DetalhesValvula/Parte B/TextureRect" unique_id=1147868630]
 layout_mode = 0
 offset_left = 34.0
-offset_top = -17.0
+offset_top = -16.0
 offset_right = 91.0
-offset_bottom = 6.0
+offset_bottom = 7.0
 text = "Parte B"
 
-[node name="Button" type="Button" parent="Painel/Control/DetalhesValvula" unique_id=690407573]
+[node name="Button" type="TextureButton" parent="Painel/Control/DetalhesValvula" unique_id=1662167031]
 layout_mode = 0
-offset_left = 328.0
-offset_top = 260.0
-offset_right = 536.0
-offset_bottom = 308.0
+offset_left = 358.0
+offset_top = 311.0
+offset_right = 566.0
+offset_bottom = 359.0
+texture_normal = ExtResource("8_cbn7w")
+texture_pressed = ExtResource("9_goe87")
+texture_disabled = ExtResource("10_v1igj")
+stretch_mode = 6
 
 [node name="DetalhesTransistor" type="Control" parent="Painel/Control" unique_id=1026601226]
 anchors_preset = 0
 offset_left = 20.0
 offset_right = 28.0
 offset_bottom = 400.0
+
+[node name="Label" type="Label" parent="Painel/Control/DetalhesTransistor" unique_id=542449325]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 41.0
+offset_right = 548.0
+offset_bottom = 90.0
+theme_override_font_sizes/font_size = 35
+text = "TRANSISTOR"
 
 [node name="Parte A" type="Control" parent="Painel/Control/DetalhesTransistor" unique_id=620598686]
 anchors_preset = 0
@@ -204,16 +253,19 @@ offset_right = 8.0
 [node name="TextureRect" type="TextureRect" parent="Painel/Control/DetalhesTransistor/Parte A" unique_id=788088033]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 0
-offset_left = 196.0
-offset_top = 108.0
-offset_right = 308.73685
-offset_bottom = 216.0
+offset_left = 225.0
+offset_top = 88.0
+offset_right = 337.73685
+offset_bottom = 196.0
 texture = ExtResource("9_q6duy")
 
-[node name="Label" type="Label" parent="Painel/Control/DetalhesTransistor/Parte A/TextureRect" unique_id=542449325]
+[node name="Label" type="Label" parent="Painel/Control/DetalhesTransistor/Parte A/TextureRect" unique_id=356320142]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 24.0
+offset_top = -24.0
+offset_right = 81.0
+offset_bottom = -1.0
+text = "Parte A"
 
 [node name="Parte B" type="Control" parent="Painel/Control/DetalhesTransistor" unique_id=327382022]
 anchors_preset = 0
@@ -224,32 +276,36 @@ offset_bottom = 4.0
 [node name="TextureRect" type="TextureRect" parent="Painel/Control/DetalhesTransistor/Parte B" unique_id=292986356]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 0
-offset_left = 466.0
-offset_top = 66.0
-offset_right = 704.8589
-offset_bottom = 255.0
+offset_left = 481.0
+offset_top = 44.0
+offset_right = 719.8589
+offset_bottom = 233.0
 texture = ExtResource("10_8766w")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="Painel/Control/DetalhesTransistor/Parte B/TextureRect" unique_id=1100236816]
+[node name="Label" type="Label" parent="Painel/Control/DetalhesTransistor/Parte B/TextureRect" unique_id=1862958960]
 layout_mode = 0
-offset_left = 124.0
-offset_top = 160.0
-offset_right = 164.0
-offset_bottom = 183.0
+offset_left = 90.0
+offset_top = 16.0
+offset_right = 147.0
+offset_bottom = 39.0
+text = "Parte B"
 
-[node name="Button" type="Button" parent="Painel/Control/DetalhesTransistor" unique_id=2068447105]
+[node name="Button" type="TextureButton" parent="Painel/Control/DetalhesTransistor" unique_id=479147375]
 layout_mode = 0
-offset_left = 316.0
-offset_top = 260.0
-offset_right = 524.0
-offset_bottom = 308.0
+offset_left = 346.0
+offset_top = 311.0
+offset_right = 554.0
+offset_bottom = 359.0
+texture_normal = ExtResource("8_cbn7w")
+texture_pressed = ExtResource("9_goe87")
+texture_disabled = ExtResource("10_v1igj")
+stretch_mode = 6
 
-[node name="BotaoFechar" type="Button" parent="Painel/Control" unique_id=1674741969]
+[node name="BotaoFechar" type="TextureButton" parent="Painel/Control" unique_id=389379987]
 layout_mode = 0
-offset_left = 748.0
-offset_top = 11.0
-offset_right = 788.0
-offset_bottom = 51.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_twhwv")
+offset_left = 756.0
+offset_top = 10.0
+offset_right = 786.0
+offset_bottom = 40.0
