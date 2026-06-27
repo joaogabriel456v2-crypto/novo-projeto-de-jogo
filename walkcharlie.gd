@@ -43,6 +43,12 @@ func _verificar_input() -> void:
 		anim.stop()
 		return
 
+	# Verifica se tem uma caixa na direção e empurra
+	var pos_frente = global_position + direcao * TILE_SIZE
+	for caixa in get_tree().get_nodes_in_group("caixa"):
+		if caixa.global_position.distance_to(pos_frente) < 8.0:
+			caixa.mover(direcao)
+
 	var colisao = move_and_collide(direcao * TILE_SIZE, true)
 	if colisao:
 		var distancia_livre = colisao.get_travel()
@@ -57,6 +63,7 @@ func _verificar_input() -> void:
 func _mover_para_destino(delta: float) -> void:
 	var distancia := target_pos - global_position
 	var passo := MOVE_SPEED * delta
+
 	if distancia.length() <= passo:
 		global_position = target_pos
 		velocity = Vector2.ZERO
