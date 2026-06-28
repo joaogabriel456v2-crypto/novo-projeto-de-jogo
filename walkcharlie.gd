@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var craft_ui = get_node("/root/Mapa/CanvasLayerCraft/CraftUI")
-	if craft_ui.aberto:
+	if craft_ui.aberto or Dialogo.aberto:
 		velocity = Vector2.ZERO
 		moving = false
 		anim.stop()

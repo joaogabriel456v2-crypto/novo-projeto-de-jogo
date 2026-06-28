@@ -73,5 +73,10 @@ func _atualizar_botao(botao: TextureButton, comp_id: String) -> void:
 		botao.modulate = Color(0.5, 0.5, 0.5)
 
 func _craftar(comp_id: String) -> void:
+	if not Inventory.componente_esta_completo(comp_id):
+		return
+
 	Inventory.craftar(comp_id)
 	_atualizar_botoes_criar()
+	fechar()
+	Dialogo.mostrar_componente(comp_id)
