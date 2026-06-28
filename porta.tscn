@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bu6yaqnapdvwn"]
+
+[ext_resource type="Script" uid="uid://dxao8oibl15tx" path="res://porta.gd" id="1_umd14"]
+[ext_resource type="Texture2D" uid="uid://35gbb5g2yish" path="res://Porta_Fechada.png" id="2_umd14"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_umd14"]
+size = Vector2(40, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_area"]
+size = Vector2(40, 72)
+
+[node name="Porta_Fechada" type="StaticBody2D" unique_id=2011948806]
+script = ExtResource("1_umd14")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1108335060]
+position = Vector2(-4, -4)
+scale = Vector2(0.0546875, 0.0546875)
+texture = ExtResource("2_umd14")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1091916922]
+position = Vector2(-4, -8)
+shape = SubResource("RectangleShape2D_umd14")
+
+[node name="AreaInteracao" type="Area2D" parent="." unique_id=1808306999]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaInteracao" unique_id=447697721]
+position = Vector2(-4, -12)
+shape = SubResource("RectangleShape2D_area")

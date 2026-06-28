@@ -3,6 +3,8 @@ extends CanvasLayer
 var aberto := false
 var paginas: Array[String] = []
 var pagina_atual := -1
+var em_confirmacao := false
+var confirmacao_callback := Callable()
 
 var textos := {
 	"componente_1": """Hm? O que é isso? Olha só! Um relé!
@@ -34,6 +36,12 @@ var imagens := {
 @onready var imagem: TextureRect = TextureRect.new()
 @onready var painel: PanelContainer = PanelContainer.new()
 @onready var texto: Label = Label.new()
+@onready var painel_confirmacao: PanelContainer = PanelContainer.new()
+@onready var texto_confirmacao: Label = Label.new()
+@onready var botao_sim: Button = Button.new()
+@onready var botao_nao: Button = Button.new()
+@onready var tela_final: ColorRect = ColorRect.new()
+@onready var texto_final: Label = Label.new()
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -50,9 +58,30 @@ func mostrar_componente(componente_id: String) -> void:
 	else:
 		imagem.texture = null
 
-	mostrar(textos[componente_id])
+	mostrar(textos[componente_id], true)
 
-func mostrar(texto_completo: String) -> void:
+func mostrar_confirmacao(texto_pergunta: String, ao_confirmar: Callable) -> void:
+	aberto = true
+	em_confirmacao = true
+	confirmacao_callback = ao_confirmar
+	texto_confirmacao.text = texto_pergunta
+
+	fundo.show()
+	imagem.hide()
+	painel.hide()
+	painel_confirmacao.show()
+	botao_sim.grab_focus()
+
+func mostrar_tela_final() -> void:
+	aberto = true
+	em_confirmacao = false
+	fundo.hide()
+	imagem.hide()
+	painel.hide()
+	painel_confirmacao.hide()
+	tela_final.show()
+
+func mostrar(texto_completo: String, mostrar_imagem := false) -> void:
 	paginas.clear()
 	for linha in texto_completo.split("\n"):
 		var pagina := linha.strip_edges()
@@ -65,17 +94,24 @@ func mostrar(texto_completo: String) -> void:
 	aberto = true
 	pagina_atual = -1
 	fundo.show()
-	imagem.show()
+	if mostrar_imagem and imagem.texture:
+		imagem.show()
+	else:
+		imagem.hide()
 	painel.show()
 	_avancar_texto()
 
 func fechar() -> void:
 	aberto = false
+	em_confirmacao = false
 	texto.text = ""
 	_esconder_interface()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not aberto:
+		return
+
+	if em_confirmacao:
 		return
 
 	if event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_SPACE:
@@ -130,7 +166,74 @@ func _criar_interface() -> void:
 	texto.add_theme_font_size_override("font_size", 24)
 	painel.add_child(texto)
 
+	_criar_confirmacao(estilo)
+	_criar_tela_final()
+
+func _criar_confirmacao(estilo: StyleBoxFlat) -> void:
+	painel_confirmacao.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)
+	painel_confirmacao.offset_left = 32
+	painel_confirmacao.offset_top = -182
+	painel_confirmacao.offset_right = -32
+	painel_confirmacao.offset_bottom = -32
+	painel_confirmacao.add_theme_stylebox_override("panel", estilo.duplicate())
+	add_child(painel_confirmacao)
+
+	var caixa := VBoxContainer.new()
+	caixa.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	caixa.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	painel_confirmacao.add_child(caixa)
+
+	texto_confirmacao.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	texto_confirmacao.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	texto_confirmacao.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	texto_confirmacao.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	texto_confirmacao.add_theme_color_override("font_color", Color.WHITE)
+	texto_confirmacao.add_theme_font_size_override("font_size", 24)
+	caixa.add_child(texto_confirmacao)
+
+	var botoes := HBoxContainer.new()
+	botoes.alignment = BoxContainer.ALIGNMENT_CENTER
+	botoes.add_theme_constant_override("separation", 24)
+	caixa.add_child(botoes)
+
+	botao_sim.text = "Sim"
+	botao_sim.custom_minimum_size = Vector2(120, 42)
+	botao_sim.pressed.connect(_confirmar)
+	botoes.add_child(botao_sim)
+
+	botao_nao.text = "Nao"
+	botao_nao.custom_minimum_size = Vector2(120, 42)
+	botao_nao.pressed.connect(_cancelar_confirmacao)
+	botoes.add_child(botao_nao)
+
+func _criar_tela_final() -> void:
+	tela_final.set_anchors_preset(Control.PRESET_FULL_RECT)
+	tela_final.color = Color.BLACK
+	tela_final.z_index = 1000
+	add_child(tela_final)
+
+	texto_final.set_anchors_preset(Control.PRESET_FULL_RECT)
+	texto_final.text = "Obrigado por jogar"
+	texto_final.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	texto_final.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	texto_final.add_theme_color_override("font_color", Color.WHITE)
+	texto_final.add_theme_font_size_override("font_size", 42)
+	tela_final.add_child(texto_final)
+
+func _confirmar() -> void:
+	var callback := confirmacao_callback
+	confirmacao_callback = Callable()
+	fechar()
+	if callback.is_valid():
+		callback.call()
+
+func _cancelar_confirmacao() -> void:
+	confirmacao_callback = Callable()
+	fechar()
+
 func _esconder_interface() -> void:
 	fundo.hide()
 	imagem.hide()
 	painel.hide()
+	painel_confirmacao.hide()
+	tela_final.hide()

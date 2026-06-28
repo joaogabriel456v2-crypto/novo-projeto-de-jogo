@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://babewjd33b72k" path="res://Componente1 parte a.gd" id="1_jd6kg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kc202"]
-size = Vector2(512, 512)
+size = Vector2(256, 256)
 
 [node name="ItemColetavel" type="Area2D" unique_id=449047197]
 script = ExtResource("1_jd6kg")

@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
-@export var velocidade_maxima := 120.0
+@export var velocidade_maxima := 180.0
 @export var desaceleracao := 700.0
 
 func _ready() -> void:
+	z_index = 1
 	add_to_group("caixa")
 	collision_layer = 0
 	collision_mask = 0

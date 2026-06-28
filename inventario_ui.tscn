@@ -1,12 +1,9 @@
-[gd_scene format=3 uid="uid://dtnu00yowf572"]
+[gd_scene load_steps=5 format=3 uid="uid://dtnu00yowf572"]
 
 [ext_resource type="Script" uid="uid://btm64gysxg8b6" path="res://inventario_ui.gd" id="1_htnqw"]
-[ext_resource type="Texture2D" uid="uid://dl6kyf80gal2g" path="res://sprites/componente1_parte_a.png" id="1_puj5k"]
-[ext_resource type="Texture2D" uid="uid://cbr2yu3sion8r" path="res://sprites/componente1_parte_b.png" id="2_htnqw"]
-[ext_resource type="Texture2D" uid="uid://b3yyhy31ramw1" path="res://sprites/componente2_parte_a.png" id="3_4ij5e"]
-[ext_resource type="Texture2D" uid="uid://kmegmq68xnrn" path="res://sprites/componente2_parte_b.png" id="4_7gsgb"]
-[ext_resource type="Texture2D" uid="uid://v0rxgcsln77s" path="res://sprites/componente3_parte_a.png" id="5_4kjd2"]
-[ext_resource type="Texture2D" uid="uid://ply3mik58otp" path="res://sprites/componente3_parte_b.png" id="6_fb4vm"]
+[ext_resource type="Texture2D" uid="uid://b4rxvmsa1dncl" path="res://sprites/componente1_montado.png" id="2_6q17m"]
+[ext_resource type="Texture2D" uid="uid://dor4hc48ucpwb" path="res://sprites/componente2_montado.png" id="3_47s5e"]
+[ext_resource type="Texture2D" uid="uid://u4xyqrrmyn2r" path="res://sprites/componente3_montado.png" id="4_3w1ae"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1027523330]
 script = ExtResource("1_htnqw")
@@ -14,53 +11,30 @@ script = ExtResource("1_htnqw")
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1661026362]
 offset_left = 8.0
 offset_top = 544.0
-offset_right = 633.0
+offset_right = 300.0
 offset_bottom = 664.0
+theme_override_constants/separation = 12
 
-[node name="Slot_C1A" type="TextureRect" parent="HBoxContainer" unique_id=677304232]
+[node name="Slot_C1" type="TextureRect" parent="HBoxContainer"]
 modulate = Color(1, 1, 1, 0.23529412)
-custom_minimum_size = Vector2(75, 90)
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-texture = ExtResource("1_puj5k")
+texture = ExtResource("2_6q17m")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Slot_C1B" type="TextureRect" parent="HBoxContainer" unique_id=1129390888]
+[node name="Slot_C2" type="TextureRect" parent="HBoxContainer"]
 modulate = Color(1, 1, 1, 0.23529412)
-custom_minimum_size = Vector2(120, 120)
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-texture = ExtResource("2_htnqw")
+texture = ExtResource("3_47s5e")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Slot_C2A" type="TextureRect" parent="HBoxContainer" unique_id=842986223]
+[node name="Slot_C3" type="TextureRect" parent="HBoxContainer"]
 modulate = Color(1, 1, 1, 0.23529412)
-custom_minimum_size = Vector2(120, 65)
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-texture = ExtResource("3_4ij5e")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Slot_C2B" type="TextureRect" parent="HBoxContainer" unique_id=188784921]
-modulate = Color(1, 1, 1, 0.23529412)
-custom_minimum_size = Vector2(85, 100)
-layout_mode = 2
-texture = ExtResource("4_7gsgb")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Slot_C3A" type="TextureRect" parent="HBoxContainer" unique_id=2132188573]
-modulate = Color(1, 1, 1, 0.23529412)
-custom_minimum_size = Vector2(85, 100)
-layout_mode = 2
-texture = ExtResource("5_4kjd2")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Slot_C3B" type="TextureRect" parent="HBoxContainer" unique_id=1014925626]
-modulate = Color(1, 1, 1, 0.23529412)
-custom_minimum_size = Vector2(120, 100)
-layout_mode = 2
-texture = ExtResource("6_fb4vm")
+texture = ExtResource("4_3w1ae")
 expand_mode = 1
 stretch_mode = 5

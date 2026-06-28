@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" uid="uid://dilsbegkwst8i" path="res://componente_coletavel.gd" id="1_v03sd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v03sd"]
+size = Vector2(48, 48)
+
+[node name="ComponenteColetavel" type="Area2D"]
+z_index = 1
+script = ExtResource("1_v03sd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v03sd")

@@ -1,34 +1,27 @@
 extends CanvasLayer
 
-@onready var slots := [
-	$HBoxContainer/Slot_C1A,
-	$HBoxContainer/Slot_C1B,
-	$HBoxContainer/Slot_C2A,
-	$HBoxContainer/Slot_C2B,
-	$HBoxContainer/Slot_C3A,
-	$HBoxContainer/Slot_C3B,
-]
-
-var ordem := [
-	["componente_1", "parte_a"],
-	["componente_1", "parte_b"],
-	["componente_2", "parte_a"],
-	["componente_2", "parte_b"],
-	["componente_3", "parte_a"],
-	["componente_3", "parte_b"],
-]
+@onready var slots := {
+	"componente_1": $HBoxContainer/Slot_C1,
+	"componente_2": $HBoxContainer/Slot_C2,
+	"componente_3": $HBoxContainer/Slot_C3,
+}
 
 func _ready() -> void:
-	Inventory.peca_coletada.connect(_on_peca_coletada)
-	Inventory.componente_craftado.connect(_on_componente_craftado)
+	Inventory.componente_coletado.connect(_on_componente_coletado)
+	_atualizar_todos_os_slots()
 
-func _on_peca_coletada(componente_id: String, parte: String) -> void:
-	for i in range(ordem.size()):
-		if ordem[i][0] == componente_id and ordem[i][1] == parte:
-			slots[i].modulate.a = 1.0  # fica totalmente visível quando coletado
-			break
+func _on_componente_coletado(componente_id: String) -> void:
+	_atualizar_slot(componente_id)
 
-func _on_componente_craftado(componente_id: String) -> void:
-	for i in range(ordem.size()):
-		if ordem[i][0] == componente_id:
-			slots[i].visible = false
+func _atualizar_todos_os_slots() -> void:
+	for componente_id in slots.keys():
+		_atualizar_slot(componente_id)
+
+func _atualizar_slot(componente_id: String) -> void:
+	if not slots.has(componente_id):
+		return
+
+	if Inventory.componente_foi_coletado(componente_id):
+		slots[componente_id].modulate.a = 1.0
+	else:
+		slots[componente_id].modulate.a = 0.235
