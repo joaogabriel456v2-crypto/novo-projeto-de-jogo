@@ -4,14 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://kckashry2evd" path="res://ChatGPT Image 26 de jun. de 2026, 19_10_09.png" id="2_7hun5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tpuep"]
-size = Vector2(64, 64)
+size = Vector2(16, 16)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=376773859]
+[node name="Caixa" type="CharacterBody2D" unique_id=376773859]
+z_index = 1
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_tpuep")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1989809853]
-position = Vector2(-5.684342e-14, 0)
-scale = Vector2(0.07812499, 0.07812499)
+position = Vector2(-7.1525574e-07, -7.1525574e-07)
+scale = Vector2(0.029296875, 0.025390625)
 texture = ExtResource("2_7hun5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=153005398]

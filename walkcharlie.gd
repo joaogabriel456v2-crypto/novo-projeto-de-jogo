@@ -1,73 +1,71 @@
 extends CharacterBody2D
 
-const TILE_SIZE = 64
-const MOVE_SPEED = 300.0
+const MOVE_SPEED = 150.0
+const PUSH_SPEED = 120.0
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
-var moving := false
-var target_pos := Vector2.ZERO
+var direcao_olhando := Vector2.DOWN
 
 func _ready() -> void:
-	target_pos = global_position
-	z_index = 1
+	z_index = 2
+	set_collision_mask_value(1, true)
+	set_collision_mask_value(2, true)
 
-func _physics_process(delta: float) -> void:
-	var craft_ui = get_node("/root/Mapa/CanvasLayerCraft/CraftUI")
-	if craft_ui.aberto or Dialogo.aberto or Introducao.aberto:
+func _physics_process(_delta: float) -> void:
+	var craft_ui = get_node_or_null("/root/Mapa/CanvasLayerCraft/CraftUI")
+	if _movimento_bloqueado(craft_ui):
 		velocity = Vector2.ZERO
-		moving = false
 		anim.stop()
-		return
-
-	if moving:
-		_mover_para_destino(delta)
-	else:
-		_verificar_input()
-
-func _verificar_input() -> void:
-	var direcao := Vector2.ZERO
-	if Input.is_action_pressed("ui_up"):
-		direcao = Vector2.UP
-		anim.play("BackWalk")
-	elif Input.is_action_pressed("ui_down"):
-		direcao = Vector2.DOWN
-		anim.play("FrontWalk")
-	elif Input.is_action_pressed("ui_left"):
-		direcao = Vector2.LEFT
-		anim.play("LeftWalk")
-	elif Input.is_action_pressed("ui_right"):
-		direcao = Vector2.RIGHT
-		anim.play("RightWalk")
-	else:
-		anim.stop()
-		return
-
-	# Verifica se tem uma caixa na direção e empurra
-	var pos_frente = global_position + direcao * TILE_SIZE
-	for caixa in get_tree().get_nodes_in_group("caixa"):
-		if caixa.global_position.distance_to(pos_frente) < 8.0:
-			caixa.mover(direcao)
-
-	var colisao = move_and_collide(direcao * TILE_SIZE, true)
-	if colisao:
-		var distancia_livre = colisao.get_travel()
-		if distancia_livre.length() < 0.5:
-			anim.stop()
-			return
-		target_pos = global_position + distancia_livre
-	else:
-		target_pos = global_position + direcao * TILE_SIZE
-	moving = true
-
-func _mover_para_destino(delta: float) -> void:
-	var distancia := target_pos - global_position
-	var passo := MOVE_SPEED * delta
-
-	if distancia.length() <= passo:
-		global_position = target_pos
-		velocity = Vector2.ZERO
-		moving = false
-	else:
-		velocity = distancia.normalized() * MOVE_SPEED
 		move_and_slide()
+		return
+
+	var direcao := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+
+	_atualizar_animacao(direcao)
+	velocity = direcao * MOVE_SPEED
+	move_and_slide()
+	_empurrar_caixas(direcao)
+
+func _movimento_bloqueado(craft_ui: Node) -> bool:
+	var craft_aberto := false
+	if craft_ui:
+		craft_aberto = craft_ui.aberto
+	var dialogo_aberto := Dialogo.aberto
+	var introducao_aberta := Introducao.aberto
+	return craft_aberto or dialogo_aberto or introducao_aberta
+
+func _atualizar_animacao(direcao: Vector2) -> void:
+	if direcao == Vector2.ZERO:
+		anim.stop()
+		return
+
+	if absf(direcao.x) > absf(direcao.y):
+		if direcao.x > 0.0:
+			direcao_olhando = Vector2.RIGHT
+			anim.play("RightWalk")
+		else:
+			direcao_olhando = Vector2.LEFT
+			anim.play("LeftWalk")
+	else:
+		if direcao.y > 0.0:
+			direcao_olhando = Vector2.DOWN
+			anim.play("FrontWalk")
+		else:
+			direcao_olhando = Vector2.UP
+			anim.play("BackWalk")
+
+func _empurrar_caixas(direcao: Vector2) -> void:
+	if direcao == Vector2.ZERO:
+		return
+
+	for i in range(get_slide_collision_count()):
+		var colisao := get_slide_collision(i)
+		var objeto := colisao.get_collider()
+
+		if not objeto or not objeto.is_in_group("caixa"):
+			continue
+
+		var empurrando_de_frente := direcao.dot(-colisao.get_normal()) > 0.5
+		if empurrando_de_frente and objeto.has_method("receber_empurrao"):
+			objeto.receber_empurrao(direcao, PUSH_SPEED)

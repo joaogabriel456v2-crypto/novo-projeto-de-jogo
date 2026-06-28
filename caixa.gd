@@ -1,44 +1,23 @@
 extends CharacterBody2D
 
-const TILE_SIZE = 64
-const MOVE_SPEED = 300.0
-
-var moving := false
-var target_pos := Vector2.ZERO
+@export var velocidade_maxima := 120.0
+@export var desaceleracao := 700.0
 
 func _ready() -> void:
-	target_pos = global_position
 	add_to_group("caixa")
+	collision_layer = 0
+	collision_mask = 0
+	set_collision_layer_value(2, true)
+	set_collision_mask_value(1, true)
+	set_collision_mask_value(2, true)
 
-func mover(direcao: Vector2) -> bool:
-	if moving:
-		return false
-
-	var colisao = move_and_collide(direcao * TILE_SIZE, true)
-	if colisao:
-		return false
-
-	target_pos = global_position + direcao * TILE_SIZE
-	moving = true
-	return true
-
-func _physics_process(delta: float) -> void:
-	if not moving:
+func receber_empurrao(direcao: Vector2, velocidade_empurrao: float) -> void:
+	if direcao == Vector2.ZERO:
 		return
 
-	var distancia := target_pos - global_position
-	var passo := MOVE_SPEED * delta
+	var velocidade_alvo := minf(velocidade_empurrao, velocidade_maxima)
+	velocity = direcao.normalized() * velocidade_alvo
 
-	if distancia.length() <= passo:
-		global_position = target_pos
-		velocity = Vector2.ZERO
-		moving = false
-		_verificar_botao()
-	else:
-		velocity = distancia.normalized() * MOVE_SPEED
-		move_and_slide()
-
-func _verificar_botao() -> void:
-	for botao in get_tree().get_nodes_in_group("botao_pressao"):
-		if botao.global_position.distance_to(global_position) < 8.0:
-			botao.ativar()
+func _physics_process(delta: float) -> void:
+	move_and_slide()
+	velocity = velocity.move_toward(Vector2.ZERO, desaceleracao * delta)

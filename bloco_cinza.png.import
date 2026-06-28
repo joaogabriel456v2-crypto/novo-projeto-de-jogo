@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5le25cuv7168"
-path="res://.godot/imported/parede.png-910b3413e2b4b0559b72190f0e257fce.ctex"
+uid="uid://cv5epk13mpkoi"
+path="res://.godot/imported/bloco_cinza.png-f41f7a5b8202af3a8ba90f1f5bc855f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://parede.png"
-dest_files=["res://.godot/imported/parede.png-910b3413e2b4b0559b72190f0e257fce.ctex"]
+source_file="res://bloco_cinza.png"
+dest_files=["res://.godot/imported/bloco_cinza.png-f41f7a5b8202af3a8ba90f1f5bc855f4.ctex"]
 
 [params]
 

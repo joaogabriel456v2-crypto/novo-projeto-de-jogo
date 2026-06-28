@@ -14,7 +14,6 @@
 [ext_resource type="Script" uid="uid://cfn2jyylaef5m" path="res://walkcharlie.gd" id="12_nokn1"]
 [ext_resource type="Script" uid="uid://dst80e51fsdda" path="res://parede.gd" id="12_y7oua"]
 [ext_resource type="Texture2D" uid="uid://dh03ldi0vtfeq" path="res://Animação Charlie/CharlieCosta.png" id="13_qry5r"]
-[ext_resource type="Texture2D" uid="uid://bnxaikgoxaxjj" path="res://botao_inativo.png" id="13_sdqv0"]
 [ext_resource type="Texture2D" uid="uid://c58shtwkhngdp" path="res://Animação Charlie/CharlieFrente.png" id="14_ucc3h"]
 [ext_resource type="Texture2D" uid="uid://c4s1t1g2e0con" path="res://Animação Charlie/CharlieEsquerda.png" id="15_lkx2x"]
 [ext_resource type="Texture2D" uid="uid://cpvo6e2nutmwo" path="res://Animação Charlie/CharlieDireita.png" id="16_0oehc"]
@@ -27,6 +26,9 @@
 [ext_resource type="PackedScene" uid="uid://dtnu00yowf572" path="res://inventario_ui.tscn" id="23_kb3w4"]
 [ext_resource type="PackedScene" uid="uid://bwx6fhfi7hb32" path="res://mesa_craft.tscn" id="24_6bcuj"]
 [ext_resource type="PackedScene" uid="uid://bqysyptdbrbmx" path="res://craft_ui.tscn" id="25_dfgvn"]
+[ext_resource type="PackedScene" uid="uid://c1lt3hjbg81qi" path="res://caixa.tscn" id="28_5lity"]
+[ext_resource type="PackedScene" uid="uid://bla0ckjcuwvjb" path="res://parede.tscn" id="29_iatri"]
+[ext_resource type="PackedScene" uid="uid://dymmat01kbm70" path="res://botao_pressao.tscn" id="30_bb1j5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4o503"]
 texture = ExtResource("1_s72x0")
@@ -3496,6 +3498,9 @@ sources/8 = SubResource("TileSetAtlasSource_bb1j5")
 sources/9 = SubResource("TileSetAtlasSource_77wy5")
 sources/10 = SubResource("TileSetAtlasSource_6bcuj")
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y7oua"]
+load_path = "res://.godot/imported/botao_inativo.png-7d1782033accaa4cb85ad860dcc27d3f.ctex"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5lity"]
 size = Vector2(63.999756, 64)
 
@@ -3559,7 +3564,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_byyi0")
 }],
-"loop": 1,
+"loop": true,
 "name": &"BackWalk",
 "speed": 5.0
 }, {
@@ -3576,7 +3581,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yhjlm")
 }],
-"loop": 1,
+"loop": true,
 "name": &"FrontWalk",
 "speed": 5.0
 }, {
@@ -3593,7 +3598,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ha8ri")
 }],
-"loop": 1,
+"loop": true,
 "name": &"LeftWalk",
 "speed": 5.0
 }, {
@@ -3610,7 +3615,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5gnxu")
 }],
-"loop": 1,
+"loop": true,
 "name": &"RightWalk",
 "speed": 5.0
 }]
@@ -3633,7 +3638,7 @@ script = ExtResource("12_y7oua")
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=594664297]
 position = Vector2(-632.00006, 4.7683716e-07)
 scale = Vector2(0.25000116, 0.5)
-texture = ExtResource("13_sdqv0")
+texture = SubResource("CompressedTexture2D_y7oua")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=2071196405]
 position = Vector2(-632, 0)
@@ -3690,3 +3695,11 @@ script = ExtResource("22_pjjq3")
 [node name="CraftUI" parent="CanvasLayerCraft" unique_id=749918088 instance=ExtResource("25_dfgvn")]
 
 [node name="Mesa_Craft" parent="." unique_id=1600757573 instance=ExtResource("24_6bcuj")]
+
+[node name="parede" parent="." unique_id=873840190 instance=ExtResource("29_iatri")]
+position = Vector2(-140, 14)
+
+[node name="botao_pressao" parent="." unique_id=334770825 instance=ExtResource("30_bb1j5")]
+position = Vector2(-75.25, 16)
+
+[node name="Caixa" parent="." unique_id=376773859 instance=ExtResource("28_5lity")]

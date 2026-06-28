@@ -1,10 +1,20 @@
 [gd_scene format=3 uid="uid://dymmat01kbm70"]
 
 [ext_resource type="Script" uid="uid://ws5awyiqk4o7" path="res://botao_pressao.gd" id="1_2ekvt"]
+[ext_resource type="Texture2D" uid="uid://ddjw7kxvqy1fv" path="res://botao_inativo.png" id="2_qgxrn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ekvt"]
+size = Vector2(16, 16)
 
 [node name="botao_pressao" type="Area2D" unique_id=334770825]
+z_index = 0
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_2ekvt")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1964445709]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_qgxrn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1519090551]
+shape = SubResource("RectangleShape2D_2ekvt")
