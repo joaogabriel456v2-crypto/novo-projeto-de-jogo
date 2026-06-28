@@ -24,6 +24,14 @@ Enquanto o relé usa força mecânica e a válvula usa elétrons viajando no vá
 Tenho certeza que no meu laptop deve ter alguns milhões desses lá dentro!"""
 }
 
+var imagens := {
+	"componente_1": "res://sprites/componente1_montado.png",
+	"componente_2": "res://sprites/componente2_montado.png",
+	"componente_3": "res://sprites/componente3_montado.png"
+}
+
+@onready var fundo: ColorRect = ColorRect.new()
+@onready var imagem: TextureRect = TextureRect.new()
 @onready var painel: PanelContainer = PanelContainer.new()
 @onready var texto: Label = Label.new()
 
@@ -31,11 +39,17 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	layer = 100
 	_criar_interface()
-	painel.hide()
+	_esconder_interface()
 
 func mostrar_componente(componente_id: String) -> void:
 	if not textos.has(componente_id):
 		return
+
+	if imagens.has(componente_id):
+		imagem.texture = load(imagens[componente_id])
+	else:
+		imagem.texture = null
+
 	mostrar(textos[componente_id])
 
 func mostrar(texto_completo: String) -> void:
@@ -50,13 +64,15 @@ func mostrar(texto_completo: String) -> void:
 
 	aberto = true
 	pagina_atual = -1
+	fundo.show()
+	imagem.show()
 	painel.show()
 	_avancar_texto()
 
 func fechar() -> void:
 	aberto = false
-	painel.hide()
 	texto.text = ""
+	_esconder_interface()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not aberto:
@@ -75,6 +91,19 @@ func _avancar_texto() -> void:
 	texto.text = paginas[pagina_atual]
 
 func _criar_interface() -> void:
+	fundo.set_anchors_preset(Control.PRESET_FULL_RECT)
+	fundo.color = Color(0, 0, 0, 0.72)
+	add_child(fundo)
+
+	imagem.set_anchors_preset(Control.PRESET_CENTER_TOP)
+	imagem.offset_left = -170
+	imagem.offset_top = 38
+	imagem.offset_right = 170
+	imagem.offset_bottom = 270
+	imagem.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+	imagem.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	add_child(imagem)
+
 	painel.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)
 	painel.offset_left = 32
 	painel.offset_top = -182
@@ -100,3 +129,8 @@ func _criar_interface() -> void:
 	texto.add_theme_color_override("font_color", Color.WHITE)
 	texto.add_theme_font_size_override("font_size", 24)
 	painel.add_child(texto)
+
+func _esconder_interface() -> void:
+	fundo.hide()
+	imagem.hide()
+	painel.hide()
