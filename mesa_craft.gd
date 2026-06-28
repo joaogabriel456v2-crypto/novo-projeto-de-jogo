@@ -17,5 +17,5 @@ func _on_body_exited(body: Node2D) -> void:
 		jogador_no_alcance = false
 
 func _process(_delta: float) -> void:
-	if jogador_no_alcance and not Dialogo.aberto and Input.is_action_just_pressed("interagir"):
+	if jogador_no_alcance and not Dialogo.aberto and not Introducao.aberto and Input.is_action_just_pressed("interagir"):
 		craft_ui.abrir()
