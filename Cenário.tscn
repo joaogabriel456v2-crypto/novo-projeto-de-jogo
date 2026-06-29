@@ -3616,7 +3616,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_byyi0")
 }],
-"loop": true,
+"loop": 1,
 "name": &"BackWalk",
 "speed": 5.0
 }, {
@@ -3633,7 +3633,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yhjlm")
 }],
-"loop": true,
+"loop": 1,
 "name": &"FrontWalk",
 "speed": 5.0
 }, {
@@ -3650,7 +3650,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ha8ri")
 }],
-"loop": true,
+"loop": 1,
 "name": &"LeftWalk",
 "speed": 5.0
 }, {
@@ -3667,7 +3667,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5gnxu")
 }],
-"loop": true,
+"loop": 1,
 "name": &"RightWalk",
 "speed": 5.0
 }]

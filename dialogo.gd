@@ -4,6 +4,7 @@ var aberto := false
 var paginas: Array[String] = []
 var pagina_atual := -1
 var em_confirmacao := false
+var final_aberto := false
 var confirmacao_callback := Callable()
 
 var textos := {
@@ -75,6 +76,7 @@ func mostrar_confirmacao(texto_pergunta: String, ao_confirmar: Callable) -> void
 func mostrar_tela_final() -> void:
 	aberto = true
 	em_confirmacao = false
+	final_aberto = true
 	fundo.hide()
 	imagem.hide()
 	painel.hide()
@@ -104,6 +106,7 @@ func mostrar(texto_completo: String, mostrar_imagem := false) -> void:
 func fechar() -> void:
 	aberto = false
 	em_confirmacao = false
+	final_aberto = false
 	texto.text = ""
 	_esconder_interface()
 
@@ -115,7 +118,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 
 	if event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_SPACE:
-		_avancar_texto()
+		if final_aberto:
+			fechar()
+			Menu.abrir()
+		else:
+			_avancar_texto()
 		get_viewport().set_input_as_handled()
 
 func _avancar_texto() -> void:

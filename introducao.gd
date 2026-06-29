@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var aberto := true
+var aberto := false
 var slide_atual := -1
 
 var slides := [
@@ -13,7 +13,8 @@ var slides := [
 		"imagem": "res://fabrica abandonada.png"
 	},
 	{
-		"texto": "Agora eu tenho que encontrar alguns componentes para que eu possa ligar algumas maquinas e abrir a porta de novo.",
+		"texto": "Agora eu tenho que encontrar alguns componentes para que eu possa ligar algumas maquinas e abrir a porta de novo.
+		*para voltar ao menu, tecle ALT",
 		"imagem": "res://porta trancada.png"
 	}
 ]
@@ -27,7 +28,18 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	layer = 200
 	_criar_interface()
+	hide()
+
+func iniciar() -> void:
+	aberto = true
+	slide_atual = -1
+	show()
 	_avancar_slide()
+
+func reiniciar() -> void:
+	aberto = false
+	slide_atual = -1
+	hide()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not aberto:

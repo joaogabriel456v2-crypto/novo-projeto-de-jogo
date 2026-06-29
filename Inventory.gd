@@ -34,6 +34,13 @@ signal peca_coletada(componente_id: String, parte: String)
 signal componente_coletado(componente_id: String)
 signal componente_craftado(componente_id: String)
 
+func reiniciar() -> void:
+	for componente_id in componentes.keys():
+		componentes[componente_id]["partes_coletadas"]["parte_a"] = false
+		componentes[componente_id]["partes_coletadas"]["parte_b"] = false
+		componentes[componente_id]["craftado"] = false
+		componentes[componente_id]["coletado"] = false
+
 func coletar_peca(componente_id: String, parte: String) -> void:
 	if not componentes.has(componente_id):
 		push_warning("Componente desconhecido: " + componente_id)
