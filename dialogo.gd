@@ -77,11 +77,21 @@ func mostrar_tela_final() -> void:
 	aberto = true
 	em_confirmacao = false
 	final_aberto = true
+	texto_final.text = "Obrigado por jogar\nSeu tempo: " + _obter_tempo_final()
 	fundo.hide()
 	imagem.hide()
 	painel.hide()
 	painel_confirmacao.hide()
 	tela_final.show()
+
+func _obter_tempo_final() -> String:
+	for timer in get_tree().get_nodes_in_group("timer_ui"):
+		if timer.has_method("parar"):
+			timer.parar()
+		if timer.has_method("obter_tempo_formatado"):
+			return timer.obter_tempo_formatado()
+
+	return "0.00s"
 
 func mostrar(texto_completo: String, mostrar_imagem := false) -> void:
 	paginas.clear()
@@ -224,7 +234,7 @@ func _criar_tela_final() -> void:
 	texto_final.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	texto_final.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	texto_final.add_theme_color_override("font_color", Color.WHITE)
-	texto_final.add_theme_font_size_override("font_size", 42)
+	texto_final.add_theme_font_size_override("font_size", 38)
 	tela_final.add_child(texto_final)
 
 func _confirmar() -> void:

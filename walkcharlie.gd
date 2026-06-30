@@ -6,6 +6,7 @@ const PUSH_SPEED = 180.0
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
 var direcao_olhando := Vector2.DOWN
+var timer_iniciado := false
 
 func _ready() -> void:
 	z_index = 2
@@ -21,11 +22,22 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	var direcao := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var posicao_antes := global_position
 
 	_atualizar_animacao(direcao)
 	velocity = direcao * MOVE_SPEED
 	move_and_slide()
+	_iniciar_timer_se_necessario(global_position.distance_to(posicao_antes) > 0.01)
 	_empurrar_caixas(direcao)
+
+func _iniciar_timer_se_necessario(personagem_moveu: bool) -> void:
+	if timer_iniciado or not personagem_moveu:
+		return
+
+	timer_iniciado = true
+	for timer in get_tree().get_nodes_in_group("timer_ui"):
+		if timer.has_method("iniciar"):
+			timer.iniciar()
 
 func _movimento_bloqueado(craft_ui: Node) -> bool:
 	var craft_aberto := false
